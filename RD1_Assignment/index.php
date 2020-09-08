@@ -1,5 +1,8 @@
 <?php
 require_once('connDB.php');
+if (isset($_POST['btn'])) {
+    $_SESSION["id"] = $_POST['city'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +28,10 @@ require_once('connDB.php');
   </script>
   <style>
     h1 {
+      color: rgb(0, 0, 0);
+      text-align: center;
+    }
+    h2 {
       color: rgb(0, 0, 0);
       text-align: center;
     }
@@ -106,16 +113,17 @@ require_once('connDB.php');
       </div>
     </div>
 
+
     <div class="form-group row">
       <label for="time" class="col-6 col-form-label">類型：
       </label>
       <div class="col-6">
         <select id="time" name="time" class="custom-select" required="required">
-          <option value="RAIN">一小時降雨量</option>
-          <option value="HOUR_24">一整天降雨量</option>
           <option value="current">當前天氣</option>
           <option value="ftomorrow">未來兩天</option>
           <option value="fweek">未來一週</option>
+          <option value="RAIN">一小時降雨量</option>
+          <option value="HOUR_24">一整天降雨量</option>
         </select>
       </div>
     </div>
@@ -127,19 +135,17 @@ require_once('connDB.php');
     </div>
   </form >
   <div class="card" id="card">
-    <div class="card1" id="id01">
-      <img id=img01 src="./images/Taipei_101.jpg" alt="Taipei_101, Taipei, Taiwan" width="50%" height="auto" style="display: none;">
-      <img id=img02 src="./images/Tamsui_red.jpg" alt="Fort Santo Domingo, New Taipei, Taiwan" width="50%" height="auto" style="display: none;">
-      <img id=img03 src="./images/Taipei_101.jpg" alt="Taipei_101, Taipei, Taiwan" width="50%" height="auto" style="display: none;">
-      <img id=img04 src="./images/Tamsui_red.jpg" alt="Fort Santo Domingo, New Taipei, Taiwan" width="50%" height="auto" style="display: none;">
-      <img id=img05 src="./images/Taipei_101.jpg" alt="Taipei_101, Taipei, Taiwan" width="50%" height="auto" style="display: none;">
-    </div>
+    
     <!-- <div class="showData" id="id02" background-color=lightblue>
       <button onclick="myFunction()">Try it</button>
 
 
     </div> -->
-    <div class="showData" id="id03" style="background:url('./images/cloud.jpg')round">
+    <div class="showData" id="id03" style="background:url('./images/cloud.jpg')round;">
+    <div class="card1" id="id01">
+      <h2><?php echo $_POST["city"]?>特色圖</h2>
+      <img id=img01 src="./images/<?php echo $_POST["city"]?>.jpg" alt="<?php $_POST["city"]?>" width="20%" height="20%" style="display:block; margin:auto;">
+    </div>
       <?php
       if (isset($_POST['btn'])) {
         $_SESSION["id2"] = $_POST['time'];

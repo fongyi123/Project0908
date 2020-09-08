@@ -301,7 +301,7 @@ https://ithelp.ithome.com.tw/questions/10194192
 
 
 
-  CREATE TABLE weather(
+CREATE TABLE weather(
 	`datasetDescription` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
     `locationName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
     `elementName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,

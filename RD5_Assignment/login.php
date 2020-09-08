@@ -82,7 +82,7 @@ if (isset($_POST["btnOK"])) {
       <div>
         <input type="submit" name="btnOK" id="btnOK" value="登入" />
         <input type="reset" name="btnReset" id="btnReset" value="重設" />
-        <input type="submit" name="btnHome" id="btnHome" value="回首頁" />
+        <button type="button" name="btnHome" id="btnHome" onclick="window.location='index.php'" >回首頁</button>
       </div>
     </div>
     <div style="background-color:SlateBlue;">

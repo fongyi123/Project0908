@@ -10,19 +10,17 @@ if (isset($_SESSION["maaccount"])) {
   }
 }
 if (isset($_GET["okButton"])) {
-  if ($currentIndex = -1) {
-    $prnamenew = $_GET["prnamenew"];
-    $prpricenew = $_GET["prpricenew"];
-    $prquantitynew = $_GET["prquantitynew"];
-    $prdescriptnew = $_GET["prdescriptnew"];
-    $primgnew = $_GET["primgnew"];
+  $prnamenew = $_GET["prnamenew"];
+  $prpricenew = $_GET["prpricenew"];
+  $prquantitynew = $_GET["prquantitynew"];
+  $prdescriptnew = $_GET["prdescriptnew"];
+  $primgnew = $_GET["primgnew"];
 
-    $sqlnew = "INSERT INTO product (prname, prprice, prquantity, prdescript, primg) values('$prnamenew','$prpricenew','$prquantitynew','$prdescriptnew','$primgnew')";
-    mysqli_query($link, $sqlnew);
-  }else{
-
-  }
+  $sqlnew = "INSERT INTO product (prname, prprice, prquantity, prdescript, primg) values('$prnamenew','$prpricenew','$prquantitynew','$prdescriptnew','$primgnew')";
+  mysqli_query($link, $sqlnew);
 }
+
+
 
 if (isset($_GET["deletenew"])) {
   $deleten = $_GET["deletenew"];
@@ -94,7 +92,7 @@ if (isset($_GET["deletenew"])) {
     ?>
     <input type="button" name="addnewpro" id="addnewpro" class="btn btn-success" value="上架商品" />
 
-    <table border="1" id = "latestNews" cellspacing=0 cellspadding=0>
+    <table border="1" id="latestNews" cellspacing=0 cellspadding=0>
       <tr>
         <td>商品編號</td>
         <td>商品名稱</td>
@@ -129,7 +127,7 @@ if (isset($_GET["deletenew"])) {
             <img id=<?php echo $row['primg']; ?> src="./img/<?php echo $row['primg']; ?>" width="10%" height="10%">
           </td>
           <td>
-            <input type="button" name="updatenew" id="updatenew" class="btn btn-info" value="編輯" />
+            <button type="button" name="updatenew" id="updatenew" class="btn btn-info" onclick="window.location='productupdate.php?id=<?php echo $row['prid']?>'">編輯</button>
             <button type="submit" name="deletenew" id="deletenew" class="btn btn-danger" value="<?php echo $row['prid'] ?>">刪除</button>
             <?php
             ?>
@@ -149,7 +147,7 @@ if (isset($_GET["deletenew"])) {
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4>上架/編輯</h4>
+            <h4>上架商品</h4>
           </div>
           <div class="modal-body">
             <form enctype="multipart/form-data">
@@ -197,29 +195,12 @@ if (isset($_GET["deletenew"])) {
     <!-- /對話盒 -->
   </form>
   <script>
-    var currentIndex = -1;
     $("#addnewpro").click(function() {
-      // alert("OK");
       $("#newsModal").modal({
         backdrop: "static"
       });
     })
-    // $.get("/home/product", function (e) {
-    //     refreshNewsUI();
-    // })
-    // $(".updatenew").click(function () {
-    //         var iIndex = $(this).parent().parent().index();
-    //         var iIndex = $(this).closest("li").index();
-    //         currentIndex = iIndex;
-    //         $("#prnamenew").val(newsList[iIndex].prnamenew);
-    //         $("#prpricenew").val(newsList[iIndex].prpricenew);
-    //         $("#prquantitynew").val(newsList[iIndex].prquantitynew);
-    //         $("#prdescriptnew").val(newsList[iIndex].prdescriptnew);
-    //         $("#primgnew").val(newsList[iIndex].primgnew);
-    //         $("#newsModal").modal( { 
-    //           backdrop: "static" 
-    //         } );
-    //     })
+
   </script>
 </body>
 

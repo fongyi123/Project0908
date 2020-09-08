@@ -19,7 +19,7 @@ if (isset($_GET["deletenew"])) {
   $sqldelete = "DELETE  FROM cart WHERE caid = '$deleten' ";
   mysqli_query($link, $sqldelete);
 }
-
+//如果按下‘＋’按鈕
 if (isset($_GET["caquantityadd"])) {
   $caquantityadd = $_GET["caquantityadd"];
   $caquantityt = $_GET['caquantityt'];
@@ -40,6 +40,7 @@ if (isset($_GET["caquantityadd"])) {
     mysqli_query($link, $caquantitya);
   }
 }
+//如果按下‘－’按鈕
 if (isset($_GET["caquantityr"])) {
   $caquantityr = $_GET["caquantityr"];
   $caquantityt = $_GET['caquantityt'];
@@ -56,6 +57,7 @@ if (isset($_GET["caquantityr"])) {
     mysqli_query($link, $caquantitya);
   }
 }
+//如果按下‘送出訂單’按鈕
 if (isset($_GET["cartok"])) {
   $meaccount = $_SESSION["meaccount"];
   $ordate = date('Y-m-d h:i:s');
@@ -67,36 +69,28 @@ if (isset($_GET["cartok"])) {
 
   header("Location: orders.php");
 }
-
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
   <style>
     body {
       background-color: lightblue;
     }
-
     table {
       border-collapse: collapse;
       width: 100%;
     }
-
     th,
     td {
       text-align: left;
       padding: 8px;
     }
-
     tr:nth-child(even) {
       background-color: #f2f2f2
     }
-
     th {
       background-color: #4CAF50;
-
     }
   </style>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -124,11 +118,8 @@ if (isset($_GET["cartok"])) {
         $sqlcar = "SELECT * from cart";
         $result = mysqli_query($link, $sqlcar);
         $total_records = mysqli_num_rows($result);  // 取得記錄數
-
         // echo ($total_records);
         ?>
-
-
         <table border="1">
           <tr>
             <td>商品編號</td>
@@ -139,7 +130,6 @@ if (isset($_GET["cartok"])) {
             <td>商品描述</td>
             <td>商品圖片</td>
             <td>編輯功能</td>
-
           </tr>
           <?php
           while ($row = mysqli_fetch_assoc($result)) {
@@ -190,14 +180,9 @@ if (isset($_GET["cartok"])) {
         <input type="text" name="alltotal" id="alltotal" class="form-control" style="background-color: transparent;" placeholder="合計" value="<?php error_reporting(E_ALL & ~E_NOTICE);
                                                                                                                                               echo "合計： " . $all ?>" onfocus="this.blur()" />
         <button type="submit" name="cartok" id="cartok" class="btn btn-success">送出訂單</button>
-
         <!-- </div> -->
       </div>
     </div>
-
-
   </form>
-
 </body>
-
 </html>
